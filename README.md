@@ -73,7 +73,7 @@ Then open: **http://localhost:5000**
 ---
 
 ## 📩 **Using the Email Feature**
-1️⃣ Open `http://localhost:5000/Email/Compose`  
+1️⃣ Open `http://localhost:7156/Email/Compose`  
 2️⃣ Enter the **subject** and **message**  
 3️⃣ Click **Send Email** – All registered users will receive the email!  
 
