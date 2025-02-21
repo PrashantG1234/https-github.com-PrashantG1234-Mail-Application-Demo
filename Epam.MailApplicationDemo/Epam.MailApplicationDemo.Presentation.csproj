@@ -1,0 +1,14 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Epam.MailApplicationDemo.Application\Epam.MailApplicationDemo.Application.csproj" />
+    <ProjectReference Include="..\Epam.MailApplicationDemo.Infrastructure\Epam.MailApplicationDemo.Infrastructure.csproj" />
+  </ItemGroup>
+
+</Project>
