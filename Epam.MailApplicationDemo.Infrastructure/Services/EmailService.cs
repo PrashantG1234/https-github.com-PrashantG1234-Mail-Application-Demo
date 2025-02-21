@@ -21,7 +21,7 @@ namespace Epam.MailApplicationDemo.Infrastructure.Services
                 return false;
 
             var emailMessage = new MimeMessage();
-            emailMessage.From.Add(new MailboxAddress("MailApplicationDemo", "atulmanpur2003@gmail.com"));
+            emailMessage.From.Add(new MailboxAddress("app_name", "your_email"));
             foreach (var email in emails)
             {
                 emailMessage.To.Add(new MailboxAddress("", email.EmailAddress));
@@ -32,7 +32,7 @@ namespace Epam.MailApplicationDemo.Infrastructure.Services
 
             using var client = new SmtpClient();
             await client.ConnectAsync("smtp.gmail.com", 587, false);
-            await client.AuthenticateAsync("atulmanpur2003@gmail.com", "gmgm rmqi kljs ugad");
+            await client.AuthenticateAsync("your_email", "app_password");
             await client.SendAsync(emailMessage);
             await client.DisconnectAsync(true);
 
