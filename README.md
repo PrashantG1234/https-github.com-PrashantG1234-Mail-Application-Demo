@@ -32,7 +32,7 @@ Modify **appsettings.json** in `Epam.MailApplicationDemo.Presentation`:
 
 ```json
 "ConnectionStrings": {
-  "DefaultConnection": "Server=YOUR_SERVER;Database=MailDB;User Id=YOUR_USER;Password=YOUR_PASSWORD;"
+  "DefaultConnection": "Server=YOUR_SERVER;Database=Your_database_name;User Id=YOUR_USER;Password=YOUR_PASSWORD;"
 }
 ```
 
