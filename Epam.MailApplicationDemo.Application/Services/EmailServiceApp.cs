@@ -14,6 +14,9 @@ namespace Epam.MailApplicationDemo.Application.Services
 
         public async Task<bool> SendEmailToAllAsync(string subject, string message)
         {
+
+
+
             return await _emailService.SendEmailToAllAsync(subject, message);
         }
     }

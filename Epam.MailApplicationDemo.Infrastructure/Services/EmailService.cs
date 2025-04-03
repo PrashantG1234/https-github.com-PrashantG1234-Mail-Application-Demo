@@ -17,6 +17,7 @@ namespace Epam.MailApplicationDemo.Infrastructure.Services
             _emailSettings = emailSettings.Value;
         }
 
+
         public async Task<bool> SendEmailToAllAsync(string subject, string messageBody)
         {
             var emails = await _emailRepository.GetAllRegisteredEmailsAsync();

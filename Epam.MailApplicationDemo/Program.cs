@@ -9,9 +9,27 @@ using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Load connection string from appsettings.json
-var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
-builder.Services.Configure<EmailSettings>(builder.Configuration.GetSection("EmailSettings"));
+// Load connection string from environment variables
+var connectionString = Environment.GetEnvironmentVariable("DefaultConnection");
+
+if (string.IsNullOrEmpty(connectionString))
+{
+    throw new Exception("Database connection string is missing. Ensure 'DefaultConnection' is set in environment variables.");
+}
+
+// Configure EmailSettings using environment variables
+var emailSettings = new EmailSettings
+{
+    SmtpServer = Environment.GetEnvironmentVariable("SmtpServer"),
+    SmtpPort = int.Parse(Environment.GetEnvironmentVariable("SmtpPort") ?? "587"),
+    SenderEmail = Environment.GetEnvironmentVariable("SenderEmail"),
+    SenderPassword = Environment.GetEnvironmentVariable("SenderPassword")
+};
+
+builder.Services.AddSingleton(emailSettings);
+
+
+// Configure DbContext
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseSqlServer(connectionString));
 
@@ -24,9 +42,11 @@ builder.Services.AddControllersWithViews();
 var app = builder.Build();
 
 app.UseRouting();
-app.UseEndpoints(endpoints =>
-    endpoints.MapControllerRoute(
-        name: "default",
-        pattern: "{controller=Email}/{action=Compose}/{id?}"));
+
+app.MapControllerRoute(
+    name: "default",
+    pattern: "{controller}/{action}/{id?}",
+    defaults: new { controller = "Home", action = "Index" }
+);
 
 app.Run();
